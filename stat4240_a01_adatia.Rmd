@@ -1,47 +1,23 @@
 ---
-title-block-banner: true
-title: "Mathematical Statistics: Simulation and Computation"
-subtitle: "A UPEI STAT 4240 Assignment"
-author: 
-    - name: "**Bijan** (Irshaad Adatia) 高雨山"
-      id: 315954
-      email: iadatia@upei.ca
+title: "Assignment: Chapter 2"
+author: "ADATIA, Irshaad Bijan"
 date: "`r Sys.Date()`"
-abstract-title: "Design and Analysis of Experiments and Observational Studies using R"
-abstract: |
-  In Chapter 2, *Mathematical Statistics: Simulation and
-  Computation*, we explore the foundational tools needed to
-  work with data in the context of experimental and
-  observational studies.
-
-  This assignment focuses on using R to read, generate, and
-  transform data, and to summarize and visualize key features
-  of both discrete and continuous variables. Through
-  computational examples and simulation, we examine how data
-  structures, summaries, and graphical representations support
-  statistical reasoning.
-
-  By completing this chapter, we aim to develop practical
-  skills in data manipulation, simulation, and interpretation,
-  and to build an intuition for how sampling behavior and
-  variability underpin later concepts in statistical inference.
-toc: true
-toc-depth: 2
-format: 
-    html:
-        code-fold: true
-        css: styles.css
-        smooth-scroll: true
-        anchor-sections: true
+output:
+    html_document:
+        anchor-sections: TRUE
+        code-download: TRUE
+        code-folding: TRUE
+        number-sections: TRUE
+        toc: TRUE
+        toc-float: TRUE
 ---
 
-## Setup Stuff {.unnumbered}
+# Hello
 
-```{r}
-#| label: load-packages
-#| include: false
+## Setup Stuff
+
+```{r load-packages, message=FALSE}
 library(tidyverse)
-library(palmerpenguins)
 library(scidesignR)
 library(knitr)
 library(kableExtra)
@@ -49,16 +25,26 @@ library(kableExtra)
 set.seed(4240)
 ```
 
-## Randomization | Exercise 2.3
-::: {.exercise-instructions} 
-In Section 2.3, 20 patients for Example 2.5 were randomly selected from a population of 25,000.
+<style>
+.end-question {
+  margin: 2em 0;
+  position: relative;
+}
 
-a. Explain why the probability of choosing a random sample of 20 from 25,000 is $\frac{1} {25000 \choose 20}$
-b. Use R to randomly select 4 patients from a total of 8 patients, and calculate the probability of choosing this random sample.
-:::
+.end-question::after {
+    content: "■";
+    display: block;
+    text-align: right;
+    font-size: 1.5em;
+}
+</style>
+
+
+## Exercise 2.3
+
+In Section 2.3, 20 patients for Example 2.5 were randomly selected from a population of 25,000.
  
-### Probability | Exercise 2.3.a. 
-Explain why the probability of choosing a random sample of 20 from 25,000 is $\frac{1} {25000 \choose 20}$
+### a. Explain why the probability of choosing a random sample of 20 from 25,000 is $\frac{1} {25000 \choose 20}$
 
 Let's start with smaller population size, 6, {A, B, C, D, E, F}.
 And, let's start with a smaller sample size, 1. We can pick one of {A}, {B}, {C}, {D}, {E}, or {F}. That is, there are 6 ways to have a sample of size 1. The probability of choosing a random sample of size 1 from a population of size 6 is 1/6.
@@ -145,7 +131,7 @@ covid_activeTreatmentSampleSize <- 10 # the number of patients to be assigned to
 covid_patientPopulation <- tibble(id = 1:covid_patientPopulationSize)
 
 # The sample of covid patients that we will treat
-covid_treatmentSamplePatients <- covid_patientPopulation |> `
+covid_treatmentSamplePatients <- covid_patientPopulation |> 
     sample_n(covid_treatmentSampleSize)
 
 # Of the sample of patients we will treat, every possible combination of those that will receive the active treatment
